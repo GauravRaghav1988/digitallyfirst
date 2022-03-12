@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+<br>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=auto, initial-scale=1.0">
+ <title>User Database </title>
+
+ <style>
+   
+    th ,td,table,tr,table{
+       text-align: center;
+       margin-left: auto;
+       margin-right: auto;
+       border: 2px solid rgb(255, 165, 0)       
+    }
+
+    h1,div{
+      text-align: center;
+      font-size:xx-large;
+      font-weight: bold;
+      align-content: center;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    }
+ </style>
+</head>
+<body> <form action="" ></form>
+ <table>
+ <h1> User Database</h1>
+
+ <th>ID</th>
+ <th>NAME</th>
+ <th>EMAIL</th>
+ <th>PASSWORD</th>
+ <th>CREATED</th>
+ {% for data in page_obj.object_list %}
+ <tr>
+ <td> {{data.id | safe}}</td>
+ <td> {{data.name |safe}}</td>
+ <td> {{data.email |safe}}</td>
+ <td> {{data.password | safe}}</td>
+ <td> {{data.created | safe}}</td>
+</tr>
+ {% endfor %}
+
+ 
+</table>
+<center>
+   {%if page_obj.has_previous %} {# whether the previous page exists #}
+       <a href="?page={{page_obj.previous_page_number}}"> <strong> < Previous </strong></a> {# link to the prev page #}
+   {% endif %}
+   <span>    {{page_obj.number}}     </span> {# the current page number #}
+   
+   {%if page_obj.has_next %} {# whether the next page exists #}
+       <a href="?page={{page_obj.next_page_number}}"> <strong>  Next >  </strong> </a> {# link to the next page #}
+   {% endif %}
+</center>
+</body>
+</html>
+
+
+{% endblock  %}

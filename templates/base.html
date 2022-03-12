@@ -1,0 +1,101 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./assets/img/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <title>Digitallyfirst</title>
+  <link rel="icon" type="image/x-icon" href="{% static 'img/LOGO.png' %}">
+  <link href=" static/img/LOGO.png" rel="icon">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="fixed z-50 w-full bg-white top-0 flex flex-wrap items-center justify-between px-auto py-auto shadow-lg ">
+    <div class="container px-2 mx-auto flex flex-wrap items-center justify-between">
+      <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+        <a class="flex title-font font-medium text-4xl items-center text-gray-900 mb-4 md:mb-0 font-bold text-black-700 hover:text-yellow-600"
+          href="/">
+          <img src="{% static 'img/LOGO.png' %}" fill="none" stroke="currentColor" stroke-linecap="round"
+            stroke-linejoin="round" stroke-width="" class="w-15 h-20 text-white pt-1  rounded-lg" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          Digitally First
+        </a>
+      </div>
+
+
+      <div class="lg:flex flex-grow items-center hidden" id="example-navbar-danger">
+        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto ">
+
+          <li class="nav-item ">
+            <a class="px-3 py-1  flex items-center text-lg title-font bg-gray-200 
+             font-semibold text-black  hover:text-black-600 " {% if request.user %} <a class="navbar-brand"
+              href="">Hello : {{request.user| title}}</a>
+            {% else %}
+            <a class="navbar-brand" href="">no</a>
+            {% endif %}
+          </li>
+          <li class="nav-item">
+            <a class="px-3 py-1  flex items-center text-lg uppercase bg-yellow-600 font-bold text-white hover:text-black-600 "
+              href="/">
+              <span class="ml-2"> Home</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="px-3 py-1 flex items-center text-lg bg-gray-800 uppercase font-bold text-white hover:text-yellow-600"
+              href="/aboutus/">
+              <span class="ml-2">About Us</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="px-3 py-1 flex items-center text-lg bg-gray-800 uppercase font-bold text-white hover:text-yellow-600 "
+              href="/services/">
+              <span class="ml-2">Services</span>
+            </a>
+
+          <li class="nav-item">
+            <a href="/database/"
+              class="px-3 py-1 flex items-center text-lg bg-gray-800 uppercase font-bold text-white hover:text-yellow-600 ">
+              <span class="ml-2">DATABASE</span>
+            </a>
+
+          <li class="nav-item">
+            <a href="/blog/"
+              class="px-3 py-1 flex items-center text-lg bg-gray-800 uppercase font-bold text-white hover:text-yellow-600 ">
+              <span class="ml-2">BLOG</span>
+            </a>
+
+          <li class="nav-item">
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="px-3 py-1 flex items-center text-lg bg-gray-800 uppercase font-bold text-white hover:text-yellow-600 "> LOGOUT</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="px-3 py-1 flex items-center text-lg bg-gray-800 uppercase font-bold text-white hover:text-yellow-600 "> 
+            LOGIN</a>
+            {% endif %}
+          </li>
+
+     
+         
+            
+      </div>
+  </nav>
+
+
+  {% block content %}
+
+
+
+  {% endblock %}
+
